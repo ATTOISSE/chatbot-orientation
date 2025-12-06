@@ -4,7 +4,7 @@ Point d'entrée principal de l'application FastAPI
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
-from app.api.routes import auth, data_import, search
+from app.api.routes import auth, data_import, search, rag, chatbot, streaming, llm
 import logging
 
 # Configure logging
@@ -37,6 +37,10 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(data_import.router)
 app.include_router(search.router)
+app.include_router(rag.router)
+app.include_router(chatbot.router)
+app.include_router(streaming.router)
+app.include_router(llm.router)
 
 # Health check endpoints
 @app.get("/")
