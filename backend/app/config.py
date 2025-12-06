@@ -27,9 +27,10 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "eduguide_db"
     
     # ==================== JWT & SECURITY ====================
-    JWT_SECRET: str = "your-super-secret-key-change-this-in-production-min-32-chars-!!!"
+    JWT_SECRET_KEY: str = "your-super-secret-key-change-this-in-production-min-32-chars-!!!"
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     
     # ==================== HUGGING FACE & LLM ====================
     HUGGINGFACE_API_KEY: str = ""

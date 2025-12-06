@@ -55,12 +55,14 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-eduguide}:${POSTGRES_PASSWORD:-eduguide2024}@postgres:5432/${POSTGRES_DB:-eduguide_db}
-      JWT_SECRET: ${JWT_SECRET:-your-super-secret-key-change-this-in-production}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-your-super-secret-key-change-this-in-production-min-32-chars}
       JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-7}
       HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
       HUGGINGFACE_MODEL: ${HUGGINGFACE_MODEL:-meta-llama/Llama-2-7b-chat-hf}
       CHROMADB_HOST: chromadb
-      CHROMADB_PORT: 8000
+      CHROMADB_PORT: 8001
       DEBUG: ${DEBUG:-False}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       BACKEND_HOST: 0.0.0.0
