@@ -1,0 +1,67 @@
+[
+  {
+    "id": "form_001",
+    "intitule": "Licence d'Informatique",
+    "diplome": "Licence (L3)",
+    "domaine": "Informatique et Technologies",
+    "etablissement": "Université Cheikh Anta Diop",
+    "duree_annees": 3,
+    "type_formation": "Enseignement supérieur",
+    "description": "Formation complète en informatique couvrant les principes fondamentaux et les technologies modernes",
+    "conditions": "Baccalauréat scientifique ou technique",
+    "debouches": "Développeur, Ingénieur informatique, Chef de projet IT",
+    "source": "anaq"
+  },
+  {
+    "id": "form_002",
+    "intitule": "Master en Génie Logiciel",
+    "diplome": "Master (M2)",
+    "domaine": "Informatique et Technologies",
+    "etablissement": "Université Cheikh Anta Diop",
+    "duree_annees": 2,
+    "type_formation": "Enseignement supérieur",
+    "description": "Spécialisation avancée en développement logiciel et architecture informatique",
+    "conditions": "Licence en Informatique",
+    "debouches": "Architect logiciel, Chef de projet, Consultant IT",
+    "source": "anaq"
+  },
+  {
+    "id": "form_003",
+    "intitule": "Licence Économie et Gestion",
+    "diplome": "Licence (L3)",
+    "domaine": "Économie, Gestion et Commerce",
+    "etablissement": "Université Cheikh Anta Diop",
+    "duree_annees": 3,
+    "type_formation": "Enseignement supérieur",
+    "description": "Formation générale en économie, gestion d'entreprise et sciences commerciales",
+    "conditions": "Baccalauréat scientifique, économique ou littéraire",
+    "debouches": "Manager, Analyste financier, Consultant en gestion",
+    "source": "anaq"
+  },
+  {
+    "id": "form_004",
+    "intitule": "Licence Génie Civil",
+    "diplome": "Licence (L3)",
+    "domaine": "Génie et Industries",
+    "etablissement": "Université Thiès",
+    "duree_annees": 3,
+    "type_formation": "Enseignement supérieur",
+    "description": "Formation en conception, construction et maintenance d'ouvrages civils",
+    "conditions": "Baccalauréat scientifique ou technique",
+    "debouches": "Ingénieur Civil, Chef de chantier, Contrôleur de travaux",
+    "source": "anaq"
+  },
+  {
+    "id": "form_005",
+    "intitule": "Licence Biologie-Chimie",
+    "diplome": "Licence (L3)",
+    "domaine": "Sciences Naturelles et Santé",
+    "etablissement": "Université Cheikh Anta Diop",
+    "duree_annees": 3,
+    "type_formation": "Enseignement supérieur",
+    "description": "Étude des processus biologiques et des réactions chimiques",
+    "conditions": "Baccalauréat scientifique",
+    "debouches": "Chercheur, Pharmaceutique, Laboratoire, Professeur",
+    "source": "anaq"
+  }
+]

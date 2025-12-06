@@ -1,0 +1,67 @@
+[
+  {
+    "id": "anaq_001",
+    "code": "SN-UCAD-LIC-001",
+    "libelle": "Licence d'Informatique",
+    "libelle_diplome": "Licence",
+    "libelle_etablissement": "Université Cheikh Anta Diop",
+    "domaine": "Informatique et Technologies",
+    "niveau": "L3",
+    "duree": 3,
+    "date_accreditation": "2022-01-15",
+    "statut": "accrédité",
+    "validite": "2025-01-14"
+  },
+  {
+    "id": "anaq_002",
+    "code": "SN-UCAD-MAST-001",
+    "libelle": "Master en Génie Logiciel",
+    "libelle_diplome": "Master",
+    "libelle_etablissement": "Université Cheikh Anta Diop",
+    "domaine": "Informatique et Technologies",
+    "niveau": "M2",
+    "duree": 2,
+    "date_accreditation": "2022-06-20",
+    "statut": "accrédité",
+    "validite": "2025-06-19"
+  },
+  {
+    "id": "anaq_003",
+    "code": "SN-UT-LIC-001",
+    "libelle": "Licence Génie Civil",
+    "libelle_diplome": "Licence",
+    "libelle_etablissement": "Université Thiès",
+    "domaine": "Génie et Industries",
+    "niveau": "L3",
+    "duree": 3,
+    "date_accreditation": "2021-03-10",
+    "statut": "accrédité",
+    "validite": "2024-03-09"
+  },
+  {
+    "id": "anaq_004",
+    "code": "SN-UCAD-LIC-002",
+    "libelle": "Licence Économie et Gestion",
+    "libelle_diplome": "Licence",
+    "libelle_etablissement": "Université Cheikh Anta Diop",
+    "domaine": "Économie, Gestion et Commerce",
+    "niveau": "L3",
+    "duree": 3,
+    "date_accreditation": "2022-09-01",
+    "statut": "accrédité",
+    "validite": "2025-08-31"
+  },
+  {
+    "id": "anaq_005",
+    "code": "SN-UADB-LIC-001",
+    "libelle": "Licence Agro-économie",
+    "libelle_diplome": "Licence",
+    "libelle_etablissement": "Université Alioune Diop",
+    "domaine": "Agriculture et Environnement",
+    "niveau": "L3",
+    "duree": 3,
+    "date_accreditation": "2020-11-25",
+    "statut": "accrédité",
+    "validite": "2023-11-24"
+  }
+]
