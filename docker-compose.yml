@@ -1,0 +1,108 @@
+version: '3.9'
+
+services:
+  # ==================== PostgreSQL Database ====================
+  postgres:
+    image: postgres:15-alpine
+    container_name: eduguide-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-eduguide}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eduguide2024}
+      POSTGRES_DB: ${POSTGRES_DB:-eduguide_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-eduguide}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - eduguide-network
+    restart: unless-stopped
+
+  # ==================== ChromaDB Vector Store ====================
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: eduguide-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - chromadb_data:/chroma/data
+    environment:
+      CHROMA_DB_IMPL: duckdb+parquet
+      PERSIST_DIRECTORY: /chroma/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - eduguide-network
+    restart: unless-stopped
+
+  # ==================== FastAPI Backend ====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eduguide-backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-eduguide}:${POSTGRES_PASSWORD:-eduguide2024}@postgres:5432/${POSTGRES_DB:-eduguide_db}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-key-change-this-in-production}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
+      HUGGINGFACE_MODEL: ${HUGGINGFACE_MODEL:-meta-llama/Llama-2-7b-chat-hf}
+      CHROMADB_HOST: chromadb
+      CHROMADB_PORT: 8000
+      DEBUG: ${DEBUG:-False}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      BACKEND_HOST: 0.0.0.0
+      BACKEND_PORT: 8000
+    volumes:
+      - ./backend:/app
+      - ./datas:/app/datas
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_healthy
+    networks:
+      - eduguide-network
+    restart: unless-stopped
+
+  # ==================== Streamlit Frontend ====================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: eduguide-frontend
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --logger.level=info
+    ports:
+      - "8501:8501"
+    environment:
+      BACKEND_API_URL: ${BACKEND_API_URL:-http://backend:8000}
+      DEBUG: ${DEBUG:-False}
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - eduguide-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  chromadb_data:
+    driver: local
+
+networks:
+  eduguide-network:
+    driver: bridge
