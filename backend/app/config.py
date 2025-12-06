@@ -52,11 +52,12 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = [
         "http://localhost:8501",
         "http://localhost:3000",
+        "http://localhost:8000",
         "http://frontend:8501",
     ]
-    CORS_CREDENTIALS: bool = True
-    CORS_METHODS: List[str] = ["*"]
-    CORS_HEADERS: List[str] = ["*"]
+    CORS_ALLOW_CREDENTIALS: bool = True
+    CORS_ALLOW_METHODS: List[str] = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+    CORS_ALLOW_HEADERS: List[str] = ["*"]
     
     # ==================== RAG CONFIG ====================
     RAG_CHUNK_SIZE: int = 1000

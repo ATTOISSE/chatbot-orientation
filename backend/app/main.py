@@ -1,19 +1,24 @@
 """
-FastAPI main application file for EduGuide Sénégal chatbot
+Point d'entrée principal de l'application FastAPI
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.config import get_settings
+from app.api.routes import auth
 import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+settings = get_settings()
+
 # Create FastAPI app
 app = FastAPI(
-    title="EduGuide Sénégal API",
-    description="API for academic orientation chatbot in Senegal",
-    version="1.0.0",
+    title=settings.APP_NAME,
+    description="API pour le chatbot d'orientation académique au Sénégal",
+    version=settings.VERSION,
+    debug=settings.DEBUG,
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json"
@@ -22,11 +27,14 @@ app = FastAPI(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Will be restricted in production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
+    allow_methods=settings.CORS_ALLOW_METHODS,
+    allow_headers=settings.CORS_ALLOW_HEADERS,
 )
+
+# Register routes
+app.include_router(auth.router)
 
 # Health check endpoints
 @app.get("/")
