@@ -28,7 +28,7 @@ services:
     image: chromadb/chroma:latest
     container_name: eduguide-chromadb
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - chromadb_data:/chroma/data
     environment:
@@ -70,8 +70,6 @@ services:
       - ./datas:/app/datas
     depends_on:
       postgres:
-        condition: service_healthy
-      chromadb:
         condition: service_healthy
     networks:
       - eduguide-network
